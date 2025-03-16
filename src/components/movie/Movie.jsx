@@ -1,15 +1,22 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import styles from './Movie.module.css'
+import axios from 'axios'
+import { useEffect } from 'react'
 
-function Movie({id,coverImg,title,summary,genres}) {
+function Movie({id,title,summary,genres}) {
+  const state = { id: id }
   return (
-    <div key={id}>
-      <img src={coverImg} alt="cover_image" />
-      <Link to={`/movie/${id}`}><h2>{title}</h2></Link>
-      <p>{summary}</p>
-      <ul>
-        {genres.map( genre => <li key={genre}>{genre}</li>)}
-      </ul>
+    <div className={styles.movie_container} key={id}>
+      <img className={styles.movie_img} src='../../poster.png' alt="cover_image" />
+      <div>
+        <Link to={ `/movie/${id}`}>
+          <h2>{title}</h2>
+        </Link>
+        <p>{summary}</p>
+        <p>{genres}</p>
+      </div>
+      
     </div>
   )
 }
